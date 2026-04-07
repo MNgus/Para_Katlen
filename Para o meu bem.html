@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Katlen</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("tear-in-my-heart.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Camada de desfoque no fundo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.3); /* Escurece um pouco a foto */
+            backdrop-filter: blur(2px);
+            z-index: -1;
+        }
+
+        /* Tela de entrada (necessária para o play da música) */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            cursor: pointer;
+            transition: opacity 1s ease;
+        }
+
+        #overlay h1 {
+            font-family: cursive;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* CAIXA DO TEXTO */
+        .container {
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 40px 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            margin: 20px;
+            opacity: 0; /* Começa invisível e aparece no clique */
+            transition: opacity 1.5s ease;
+        }
+
+        h1 { font-family: fantasy; margin-bottom: 5px; }
+        p { font-family: fantasy; font-size: 1.5rem; margin-top: 0; color: #ff4b2b; }
+        h2 { 
+            font-family: cursive; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            white-space: pre-line; /* Mantém as quebras de linha da letra */
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="overlay" onclick="iniciar()">
+    <h1>Clique na tela amor ❤️</h1>
+</div>
+
+<div class="container" id="conteudo">
+    <h1>Vou te amar pra sempre</h1>
+    <p>Katlen</p>
+
+    <h2>
+        Sometimes you gotta bleed to know
+        That you're alive and have a soul
+        But it takes someone to come around
+        To show you how
+
+        She's the tear in my heart
+        I'm alive
+        She's the tear in my heart
+        I'm on fire
+        She's the tear in my heart
+        Take me higher
+        Than I've ever been
+
+        The songs on the radio are okay
+        But my taste in music is your face
+        And it takes a song to come around
+        To show you how
+
+        She's the tear in my heart
+        I'm alive
+        She's the tear in my heart
+        I'm on fire
+        She's the tear in my heart
+        Take me higher
+        Than I've ever been
+
+        Than I've ever been
+        Than I've ever been
+        Than I've ever been
+
+        You fell asleep in my car, I drove the whole time
+        But that's okay, I'll just avoid the holes so you'll sleep fine
+        I'm driving here I sit
+        Cursing my government
+        For not using my taxes
+        To fill holes with more cement
+
+        Sometimes you gotta bleed to know, oh, oh
+        That you're alive and have a soul, oh, oh
+        But it takes someone to come around
+        To show you how
+
+        She's the tear in my heart
+        I'm alive
+        She's the tear in my heart
+        I'm on fire
+        She's the tear in my heart
+        Take me higher
+        Than I've ever been
+
+        My heart is my armor
+        She's the tear in my heart
+        She's a carver
+        She's a butcher with a smile
+        Cut me farther
+        Than I've ever been
+    </h2>
+</div>
+
+<audio id="musica" loop>
+    <source src="TOP.webm" type="audio/webm">
+</audio>
+
+<script>
+function iniciar() {
+    const musica = document.getElementById("musica");
+    const overlay = document.getElementById("overlay");
+    const conteudo = document.getElementById("conteudo");
+
+    // Toca a música
+    musica.play();
+
+    // Remove a tela preta e mostra a letra
+    overlay.style.opacity = "0";
+    setTimeout(() => {
+        overlay.style.display = "none";
+        conteudo.style.opacity = "1";
+    }, 1000);
+}
+</script>
+
+</body>
+</html>
